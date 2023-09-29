@@ -166,8 +166,7 @@ def actors_by_title(matches: List[str]) -> List[str]:
     Returns:
         a list of actors who acted in the passed in title
     """
-    pass
-
+   
 
 def year_by_title(matches: List[str]) -> List[int]:
     """Finds year of passed in movie title
@@ -195,7 +194,13 @@ def title_by_actor(matches: List[str]) -> List[str]:
     Returns:
         a list of movie titles that the actor acted in
     """
-    pass
+    result =[]
+    for movie in movie_db:
+        if (matches[0]) == get_actors(movie):
+            result.append(get_title(movie))
+            List[str] += 1
+    print(result)
+    return result
 
 
 # dummy argument is ignored and doesn't matter
@@ -268,9 +273,9 @@ if __name__ == "__main__":
     assert isinstance(title_after_year(["1990"]), list), "title_after_year not returning a list"
     assert isinstance(director_by_title(["jaws"]), list), "director_by_title not returning a list"
     assert isinstance(title_by_director(["steven spielberg"]), list), "title_by_director not returning a list"
-    assert isinstance(actors_by_title(["jaws"]), list), "actors_by_title not returning a list"
-    # assert isinstance(year_by_title(["jaws"]), list), "year_by_title not returning a list"
-    # assert isinstance(title_by_actor(["orson welles"]), list), "title_by_actor not returning a list"
+    #assert isinstance(actors_by_title(["jaws"]), list), "actors_by_title not returning a list"
+    assert isinstance(year_by_title(["jaws"]), list), "year_by_title not returning a list"
+    assert isinstance(title_by_actor(["orson welles"]), list), "title_by_actor not returning a list"
     
     assert sorted(title_by_year(["1974"])) == sorted(
         ["amarcord", "chinatown"]
@@ -291,13 +296,13 @@ if __name__ == "__main__":
         ["jaws"]
     ), "failed title_by_director test"
     assert sorted(actors_by_title(["jaws"])) == sorted(
-        [
-            "roy scheider",
-            "robert shaw",
-            "richard dreyfuss",
-            "lorraine gary",
-            "murray hamilton",
-        ]
+         [
+             "roy scheider",
+             "robert shaw",
+             "richard dreyfuss",
+             "lorraine gary",
+             "murray hamilton",
+         ]
     ), "failed actors_by_title test"
     assert sorted(actors_by_title(["movie not in database"])) == [], "failed actors_by_title not in database test"
     assert sorted(year_by_title(["jaws"])) == sorted(
